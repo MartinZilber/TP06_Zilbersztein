@@ -17,6 +17,23 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult MaMeIg()
+    {
+        return View("mameig");
+    }
+    public IActionResult MaMeIgSolo()
+    {
+        return View("mameigsolo");
+    }
+    public IActionResult nivelmameig()
+    {
+        return View("nivelmameig");
+    }
+    public IActionResult GuardarNivel(int numJuego, string nivel)
+    {
+        Informacion.EstablecerNivel(numJuego, nivel);
+        return View("");
+    }
 
     public IActionResult Privacy()
     {

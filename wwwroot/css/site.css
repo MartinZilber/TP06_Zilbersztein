@@ -40,3 +40,33 @@ h4{
 .separador{
   margin-top:2%;
 }
+.imgajustada{
+  width:70%;
+  margin-left:17%;
+}
+h4{
+  font-size:200%;
+  margin-left:25%;
+}
+.list-group{
+  width:60%;
+  margin-left:25%;
+}
+.botonesjuego{
+  margin-top:1%;
+}
+.elegirnivel{
+  border:1px solid red;
+  width:100%;
+  margin-left:30%;
+  margin-top:5%;
+}
+.form-check-input{
+  font-size:200%;
+}
+.form-check-label{
+  font-size:200%;
+}
+.elegirnivel .btn-check{
+  margin-left:8%;
+}
