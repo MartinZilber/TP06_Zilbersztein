@@ -17,6 +17,11 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult GuardarNivelSeleccionado(int juego)
+    {
+        Informacion.seleccionarJuego(juego);
+        return View("nivelform");
+    }
     public IActionResult MaMeIg()
     {
         return View("mameig");

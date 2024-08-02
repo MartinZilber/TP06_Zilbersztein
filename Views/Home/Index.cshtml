@@ -13,7 +13,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Piedra, papel o tijera</h5>
                         <p class="card-text">¡El clásico! Podés jugarlo solo o con amigos.</p>
-                        <a href="#" class="btn btn-primary">Jugar</a>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" value="1">
+                            <label class="btn btn-primary" for="btn-check">Jugar</label>
+                        </form>
                     </div>
                 </div>
             </div>
