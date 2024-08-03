@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace TP06_Zilbersztein.Models;
 static public class Informacion
@@ -6,7 +8,8 @@ static public class Informacion
     static private string[] juegos { get; set; } = { "piedrapapeltijera", "mameig", "ahorcado", "rosco", "tateti", "sopadeletras" };
     static public int? juegoSeleccionado { get; set; }
     static public int Nivel { get; set; }
-    static private int minimo { get; set; } = 0;
+    static public int contadorIntentos { get; set; } = 0;
+    static public int minimo { get; set; } = 0;
     static public int maximo { get; set; }
     static private int? primerNumeroMaMeIg { get; set; }
     static private int? segundoNumeroMaMeIg { get; set; }
@@ -17,16 +20,25 @@ static public class Informacion
     static private string palabraElegida { get; set; }
     static private List<char> letrasDescubiertas { get; set; } = new List<char>() { 'a', 'e', 'i', 'o', 'u' };
     static public int vidas { get; set; } = 7;
-    static private string[] palabrasSopa { get; set; }
+    static public string[] palabrasSopa { get; set; } = new string[9];
+    static public string respuestaFinalSopa { get; set; }
+    static public string respuestaIngresadaUsuario { get; set; }
+    static public int sopaNumero { get; set; }
+    static public int? sopaAnterior { get; set; }
 
     static public void reestablecerValores()
     {
-        juegoString = null;
+        juegoString = "";
         juegoSeleccionado = null;
         racha = 0;
         letrasDescubiertas.Clear();
-        letrasDescubiertas.Add('a');
-        palabraElegida = null;
+        palabraElegida = "";
+        maximo = 0;
+        minimo = 0;
+        contadorIntentos = 0;
+        respuestaFinalSopa = "";
+        for (int i = 0; i < palabrasSopa.Length; i++)
+            palabrasSopa[i] = "";
     }
     static public string seleccionarJuego(int juego)
     {
@@ -39,7 +51,7 @@ static public class Informacion
         Nivel = nivel;
         if (juegoSeleccionado == 2)
         {
-            if (nivel == 1) minimo = 20;
+            if (nivel == 1) maximo = 20;
             else if (nivel == 2) maximo = 50;
             else maximo = 100;
         }
@@ -52,9 +64,9 @@ static public class Informacion
         }
         else if (juegoSeleccionado == 6)
         {
-            if (nivel == 1) { minimo = 0; maximo = 2; }
-            else if (nivel == 2) { minimo = 3; maximo = 5; }
-            else { minimo = 6; maximo = 8; }
+            if (nivel == 1) { minimo = 0; maximo = 3; }
+            else if (nivel == 2) { minimo = 3; maximo = 6; }
+            else if (nivel == 3) { minimo = 6; maximo = 9; }
         }
 
     }
@@ -149,9 +161,19 @@ static public class Informacion
             gano = true;
         return gano;
     }
-    public static int EstablecerSopa()
+    public static void EstablecerSopa()
     {
-        int numeroSopa = calcularNumero(minimo, maximo);
+        sopaAnterior = sopaNumero;
+        do
+        {
+            sopaNumero = calcularNumero(minimo, maximo);
+        } while (sopaNumero == sopaAnterior);
+        respuestaFinalSopa = null;
+        for (int i = 0; i < palabrasSopa.Length; i++)
+        { palabrasSopa[i] = ""; }
+
+        int numeroSopa = sopaNumero;
+
         if (numeroSopa == 0)
         {
             palabrasSopa[0] = "envidia";
@@ -189,9 +211,87 @@ static public class Informacion
         }
         else if (numeroSopa == 3)
         {
-            
+            palabrasSopa[0] = "yrigoyen";
+            palabrasSopa[1] = "fernandez";
+            palabrasSopa[2] = "kirchner";
+            palabrasSopa[3] = "peron";
+            palabrasSopa[4] = "illia";
+            palabrasSopa[5] = "macri";
+            palabrasSopa[6] = "martinez";
+        }
+        else if (numeroSopa == 4)
+        {
+            palabrasSopa[0] = "lobo";
+            palabrasSopa[1] = "avestruz";
+            palabrasSopa[2] = "loro";
+            palabrasSopa[3] = "gallina";
+            palabrasSopa[4] = "ardilla";
+            palabrasSopa[5] = "gato";
+            palabrasSopa[6] = "perro";
+            palabrasSopa[7] = "dinosaurio";
+        }
+        else if (numeroSopa == 5)
+        {
+            palabrasSopa[0] = "amarillo";
+            palabrasSopa[1] = "verde";
+            palabrasSopa[2] = "violeta";
+            palabrasSopa[3] = "naranja";
+            palabrasSopa[4] = "rojo";
+            palabrasSopa[5] = "celeste";
+            palabrasSopa[6] = "rosa";
+            palabrasSopa[7] = "bordo";
+            palabrasSopa[8] = "azul";
+        }
+        else if (numeroSopa == 6)
+        {
+            palabrasSopa[0] = "construcciones";
+            palabrasSopa[1] = "gestion";
+            palabrasSopa[2] = "informatica";
+            palabrasSopa[3] = "produccion";
+            palabrasSopa[4] = "medios";
+            palabrasSopa[5] = "quimica";
+            palabrasSopa[6] = "diseño";
+            palabrasSopa[7] = "humanidades";
+            palabrasSopa[8] = "mecatronica";
+        }
+        else if (numeroSopa == 7)
+        {
+            palabrasSopa[0] = "milanesa";
+            palabrasSopa[1] = "salchicha";
+            palabrasSopa[2] = "manzana";
+            palabrasSopa[3] = "pizza";
+            palabrasSopa[4] = "pescado";
+            palabrasSopa[5] = "sushi";
+            palabrasSopa[6] = "pure";
+            palabrasSopa[7] = "kiwi";
+
+        }
+        else if (numeroSopa == 8)
+        {
+            palabrasSopa[0] = "spinosaurus";
+            palabrasSopa[1] = "trex";
+            palabrasSopa[2] = "velociraptor";
+            palabrasSopa[3] = "allosaurus";
+            palabrasSopa[4] = "tegosaurus";
+            palabrasSopa[5] = "diplodocus";
+            palabrasSopa[6] = "brachiosaurus";
+            palabrasSopa[7] = "ankylosaurus";
+        }
+        for (int i = 0; i < palabrasSopa.Length; i++)
+        {
+            if (palabrasSopa[i] != null)
+                respuestaFinalSopa += palabrasSopa[i];
         }
 
-        return numeroSopa;
+    }
+    static public bool procesarSopa(string palabras)
+    {
+        bool esCorrecto = false;
+        respuestaIngresadaUsuario = palabras;
+        if (palabras.Equals(respuestaFinalSopa))
+            esCorrecto = true;
+        else if (contadorIntentos == 0)
+            contadorIntentos++;
+        return esCorrecto;
     }
 }

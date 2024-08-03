@@ -83,7 +83,7 @@ public class HomeController : Controller
         }
         else if (victoria)
         {
-            Informacion.PrepararAhorcado(); 
+            Informacion.PrepararAhorcado();
             ViewBag.Final = "¡Ganaste!";
         }
         ViewBag.palabra = Informacion.RetornarPalabra();
@@ -101,10 +101,36 @@ public class HomeController : Controller
             gano = Informacion.ProcesarAhorcadoLetra(jugada);
         return RedirectToAction(Informacion.juegoString, new { gano });
     }
-    public IActionResult sopadeletras()
+    public IActionResult sopadeletras(bool gano = false)
     {
-        int numeroSopa = Informacion.EstablecerSopa();
-        return View("sopadeletras");
+        if (gano || Informacion.contadorIntentos == 0)
+        {
+            if (gano)
+            {
+                ViewBag.Mensaje = "Felicidades, ¡ganaste!";
+                Informacion.contadorIntentos = 0;
+            }
+            else
+            {
+                Informacion.contadorIntentos++;
+            }
+            Informacion.EstablecerSopa();
+        }
+        else
+            ViewBag.Mensaje = "Oh, no, ¡algo hiciste mal!";
+        ViewBag.imagensopa = "/images/Sopa" + Informacion.sopaNumero + ".png";
+        ViewBag.respuestaFinalSopa = Informacion.respuestaFinalSopa;
+        return View(Informacion.juegoString);
+    }
+
+
+    public IActionResult procesarSopa(string palabras)
+    {
+        bool esCorrecto = Informacion.procesarSopa(palabras);
+        if (esCorrecto)
+            return RedirectToAction("sopadeletras", new { gano = true });
+        else
+            return RedirectToAction("sopadeletras", new { gano = false });
     }
 
 

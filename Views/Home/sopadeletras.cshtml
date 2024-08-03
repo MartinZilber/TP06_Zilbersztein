@@ -7,16 +7,16 @@
     <h2 class="display-4">Sopa de letras</h2>
     <p class="textojugar">¡A jugar!</p>
     <h6>¡Encontrá todas las palabras!</h6>
-    <p>@ViewBag.Final</p>
-
+    <p>@ViewBag.respuestaFinalSopa</p>
 </div>
 <div class="text-center">
-    <img src=@ViewBag.imagenVidas>
+    <p class="mensajeerrorsopa">@ViewBag.Mensaje</p>
+    <img src=@ViewBag.imagensopa>
     <form action='@Url.Action("ProcesarSopa", "Home")' method="post">
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Ingresá todas las palabras</label>
-            <input type="text" name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá todas las palabras">
-            <input type="submit" autocomplete="off" required value="Enviar" class="btn btn-primary"></input>
+            <label for="exampleFormControlInput1" class="form-label">Ingresá todas las palabras juntas en el orden en el que están acomodadas, de izquierda a derecha.</label>
+            <input type="text" autocomplete="off" name="palabras" required class="form-control" id="exampleFormControlInput1" placeholder="Ingresá todas las palabras">
+            <input type="submit" value="Enviar" class="btn btn-primary"></input>
         </div>
     </form>
 </div>

@@ -44,8 +44,8 @@
     <form action='@Url.Action("ProcesarAhorcado", "Home")' method="post">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
-            <input type="text" name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
-            <input type="submit" autocomplete="off" required value="Enviar" class="btn btn-primary"></input>
+            <input type="text" autocomplete="off" required name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
+            <input type="submit"  value="Enviar" class="btn btn-primary"></input>
         </div>
     </form>
     <p>@ViewBag.palabra</p>
