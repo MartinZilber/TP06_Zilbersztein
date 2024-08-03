@@ -130,30 +130,58 @@ h5 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
-.piedrapapeltijera{
+
+.piedrapapeltijera {
   flex: 1;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   margin: 10px;
 }
+
 .piedrapapeltijera .elemento {
   width: 100%;
   height: auto;
   max-width: 150px;
 }
-.jugadasprevias{
+
+.jugadasprevias {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+}
+
+.jugadasprevias .alert-warning {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  /* Ancho fijo */
+  height: 200px;
+  /* Alto fijo ajustado para más espacio */
+  margin: 10px;
+  text-align: center;
+}
+
+.jugadasprevias .alert-warning .contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
-.jugadasprevias .alert-warning{
-  display:flex;
-  justify-content: center;
-  max-width: 170px;
-  flex:1;
+
+.jugadasprevias .alert-warning p {
+  margin: 0;
+  flex-shrink: 0;
 }
-.jugadasprevias .alert-warning .jugadasanteriores{
-  max-width:40%;
+
+.jugadasprevias .alert-warning .jugadasanteriores {
+  max-width: 60%;
+  max-height: 80%;
+  flex-shrink: 0;
+  margin-top:8%;
 }

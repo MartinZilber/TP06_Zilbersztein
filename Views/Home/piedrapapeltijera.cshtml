@@ -25,10 +25,16 @@
     </div>
     <section class="jugadasprevias">
         <div class="alert alert-warning" role="alert">
-            Tu jugada: <img class="jugadasanteriores" src="@ViewBag.jugada">
+            <div class="contenedor">
+                <p>Tu jugada anterior:</p>
+                <img class="jugadasanteriores" src="@ViewBag.jugada">
+            </div>
         </div>
         <div class="alert alert-warning" role="alert">
-            Jugada del oponente: <img class="jugadasanteriores" src="@ViewBag.jugadaBot">
+            <div class="contenedor">
+                <p>Jugada de la PC:</p>
+                <img class="jugadasanteriores" src="@ViewBag.jugadaBot">
+            </div>
         </div>
     </section>
 
