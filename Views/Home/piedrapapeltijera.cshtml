@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Piedra, papel o tijera";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Piedra, papel o tijera</h2>
+    <p class="textojugar">¡A jugar!</p>
+    <div class="alert alert-primary" role="alert">
+        Racha: @ViewBag.contador
+    </div>
+    <h4 class="titulojugada">Elegí una jugada</h4>
+    <div class="piedrapapeltijeracont">
+        <form class="piedrapapeltijera" action='@Url.Action("procesarPPT", "Home")' method="post">
+            <input type="hidden" name="jugada" value="piedra">
+            <input type="image" class="elemento" src="/images/Piedra.png" </input>
+        </form>
+        <form class="piedrapapeltijera" action='@Url.Action("procesarPPT", "Home")' method="post">
+            <input type="hidden" name="jugada" value="papel">
+            <input type="image" class="elemento" src="/images/Papel.png" </input>
+        </form>
+        <form class="piedrapapeltijera" action='@Url.Action("procesarPPT", "Home")' method="post">
+            <input type="hidden" name="jugada" value="tijera">
+            <input type="image" class="elemento" src="/images/tijera.png" </input>
+        </form>
+    </div>
+    <section class="jugadasprevias">
+        <div class="alert alert-warning" role="alert">
+            Tu jugada: <img class="jugadasanteriores" src="@ViewBag.jugada">
+        </div>
+        <div class="alert alert-warning" role="alert">
+            Jugada del oponente: <img class="jugadasanteriores" src="@ViewBag.jugadaBot">
+        </div>
+    </section>
+
+</div>

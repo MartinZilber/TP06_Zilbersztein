@@ -5,26 +5,17 @@
     <h2 class="display-4">Elegí la dificultad</h2>
     <p>¡Elegí la dificultad en la cual querés jugar!</p>
 </div>
-<form class ="elegirnivel" action='@Url.Action("GuardarNivel", "Home")'>
-    <input type="hidden" value="1">
-    <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
-        Fácil
-    </label>
-    </div>
-    <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-    <label class="form-check-label" for="flexRadioDefault2">
-        Medio
-    </label>
-    </div>
-    <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-    <label class="form-check-label" for="flexRadioDefault2">
-        Difícil
-    </label>
-    </div>
-    <input type="checkbox" class="btn-check" id="btn-check" autocomplete="off">
-    <label class="btn btn-primary" for="btn-check">Enviar</label>
-</form>
+    <div class="form">
+        <form class ="elegirnivel" action='@Url.Action("GuardarNivel", "Home")'>
+            <input type="hidden" name="nivel" value="1">
+            <input type="submit" value="Fácil" class="btn btn-info"></input>
+        </form>
+        <form class ="elegirnivel" action='@Url.Action("GuardarNivel", "Home")'>
+            <input type="hidden" name="nivel" value="2">
+            <input type="submit" value="Medio" class="btn btn-warning"></input>
+        </form>
+        <form class ="elegirnivel" action='@Url.Action("GuardarNivel", "Home")'>
+            <input type="hidden" name="nivel" value="3">
+            <input type="submit" value="Difícil" class="btn btn-danger"></input>
+        </form>
+</div>

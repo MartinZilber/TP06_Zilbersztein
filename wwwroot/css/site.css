@@ -8,7 +8,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -20,53 +24,136 @@ html {
 body {
   margin-bottom: 60px;
 }
-p{
-  width:49%;
-  margin-left:27%;
+
+p {
+  width: 49%;
+  margin-left: 27%;
 }
-h4{
-  font-size:medium;
-  width:40%;
-  margin-left:30%;
+
+h4 {
+  font-size: medium;
+  width: 40%;
+  margin-left: 30%;
 }
-.col{
-  border:1px solid red;
+
+.col {
+  border: 1px solid red;
 }
-.card-img-top{
-  margin-top:1%;
-  margin-left:7%;
-  width:90%;
+
+.card-img-top {
+  margin-top: 1%;
+  margin-left: 7%;
+  width: 90%;
 }
-.separador{
-  margin-top:2%;
+
+.separador {
+  margin-top: 2%;
 }
-.imgajustada{
-  width:70%;
-  margin-left:17%;
+
+.imgajustada {
+  width: 70%;
+  margin-left: 17%;
 }
-h4{
-  font-size:200%;
-  margin-left:25%;
+
+h4 {
+  font-size: 200%;
+  margin-left: 25%;
 }
-.list-group{
-  width:60%;
-  margin-left:25%;
+
+.list-group {
+  width: 60%;
+  margin-left: 25%;
 }
-.botonesjuego{
-  margin-top:1%;
+
+.botonesjuego {
+  margin-top: 1%;
 }
-.elegirnivel{
-  border:1px solid red;
-  width:100%;
-  margin-left:30%;
-  margin-top:5%;
+
+.form {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin-top: 8%;
+  margin-left: 5%;
 }
-.form-check-input{
-  font-size:200%;
+
+.form .btn {
+  font-size: 250%;
+  padding: 10px 20px;
 }
-.form-check-label{
-  font-size:200%;
+
+.textojugar {
+  margin-left: 26%;
+  text-align: center;
 }
-.elegirnivel .btn-check{
-  margin-left:8%;
+
+.numero {
+  margin-left: 30.5%;
+  font-size: 500%;
+}
+
+h5 {
+  margin-left: 3%;
+}
+
+.formsmameig {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+
+.mameig .btn {
+  float: left;
+  font-size: 200%;
+  margin-top: 15%;
+}
+
+.alert {
+  width: 8%;
+  height: 5%;
+  margin-left: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-danger {
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.titulojugada {
+  margin-left: 31%;
+}
+
+.piedrapapeltijeracont {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap; 
+}
+.piedrapapeltijera{
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+  margin: 10px;
+}
+.piedrapapeltijera .elemento {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+}
+.jugadasprevias{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.jugadasprevias .alert-warning{
+  display:flex;
+  justify-content: center;
+  max-width: 170px;
+  flex:1;
+}
+.jugadasprevias .alert-warning .jugadasanteriores{
+  max-width:40%;
 }

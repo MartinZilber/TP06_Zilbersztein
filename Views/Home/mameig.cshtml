@@ -4,36 +4,23 @@
 
 <div class="text-center">
     <h2 class="display-4">¿El número es...?</h2>
-    <p>¿Listo para sumergirte a un juego determinado por tu suerte?</p>
+    <p class="textojugar">¡A jugar!</p>
+    <div class="alert alert-primary" role="alert">
+        Racha: @ViewBag.contador
+    </div>
+    <h6>El número actual es</h6>
+    <h4 class="numero">@ViewBag.numero</h4>
+    <h5>¿El siguiente número es mayor, menor o igual?</h5>
+    <div class="formsmameig">
+        <form class="mameig" action='@Url.Action("validarmameig", "Home")'>
+            <input type="submit" name = "accion" value="Menor" class="btn btn-primary"></input>
+        </form>
+        <form class="mameig" action='@Url.Action("validarmameig", "Home")'>
+            <input type="submit" name = "accion" value="Igual" class="btn btn-primary"></input>
+        </form>
+        <form class="mameig" action='@Url.Action("validarmameig", "Home")'>
+            <input type="submit" name = "accion" value="Mayor" class="btn btn-primary"></input>
+        </form>
+    </div>
+    
 </div>
-<h4>Reglas:</h4>
-<!-- REGLAS -->
-<ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Cantidad de jugadores</div>
-      Podés jugarlo solo o con un amigo.
-    </div>
-    <span class="badge text-bg-primary rounded-pill">1</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">¿Qué tengo que hacer si juego solo?</div>
-      Si jugás solo, intentar adivinar el número que fue elegido por la computadora.
-    </div>
-    <span class="badge text-bg-primary rounded-pill">2</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">¿Qué tengo que hacer si juego con un amigo?</div>
-      Uno de los dos elegirá un número y el otro intentará adivinarlo. Esto se repetirá una vez, y quien haya tardado menos ganará.
-    </div>
-    <span class="badge text-bg-primary rounded-pill">3</span>
-  </li>
-</ol>
-<!-- REGLAS -->
-<div class="text-center botonesjuego">
-    <a href="formNivel" class="btn btn-primary">Jugar solo</a>
-    <a href="#" class="btn btn-primary">Jugar de a dos</a>
-<div>
-

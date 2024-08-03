@@ -14,19 +14,22 @@
                         <h5 class="card-title">Piedra, papel o tijera</h5>
                         <p class="card-text">¡El clásico! Podés jugarlo solo o con amigos.</p>
                         <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
-                            <input type="hidden" value="1">
-                            <label class="btn btn-primary" for="btn-check">Jugar</label>
+                            <input type="hidden" name="juego" value="1">
+                            <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="/images/Plaza de mayo.jpg" class="card-img-top" alt="MAMEIG">
+                    <img src="..." class="card-img-top" alt="MAMEIG">
                     <div class="card-body">
                         <h5 class="card-title">¿El número es...?</h5>
-                            <p class="card-text">¿Es mayor? ¿Es menor? ¿Es igual? ¡Comprobalo en este maravilloso juego de azar, cuyo ganador podría considerarse el rey de la suerte!</p>
-                        <a href='@Url.Action("mameig","Home")' class="btn btn-primary">Jugar</a>
+                        <p class="card-text">¿Es mayor? ¿Es menor? ¿Es igual? ¡Comprobalo en este maravilloso juego de azar, cuyo ganador podría considerarse el rey de la suerte!</p>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" name="juego" value="2">
+                            <input type="submit" value="Jugar" class="btn btn-primary"></input>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -36,7 +39,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Ahorcado</h5>
                         <p class="card-text">¡Cuidado! Adiviná la palabra en la que estamos pensando, pero, ¡sé prudente! No querrías ser ahorcado...</p>
-                        <a href="#" class="btn btn-primary">Jugar</a>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" name="juego" value="3">
+                            <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -50,7 +56,10 @@
                     <div class="card-body">
                         <h5 class="card-title">El rosco</h5>
                         <p class="card-text">¿Cuántas palabras conocés? ¡Comprobalo en este desafiante juego!</p>
-                        <a href="#" class="btn btn-primary">Jugar</a>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" name="juego" value="4">
+                            <label class="btn btn-primary" for="btn-check">Jugar</label>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -60,7 +69,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Ta-te-ti</h5>
                         <p class="card-text">¡El juego de las formas! Juntando azar con estrategia, ¡podés ganar este tradicional juego!</p>
-                        <a href="#" class="btn btn-primary">Jugar</a>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" name="juego" value="5">
+                            <label class="btn btn-primary" for="btn-check">Jugar</label>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -70,7 +82,10 @@
                     <div class="card-body">
                         <h5 class="card-title">Piedra, papel o tijera</h5>
                         <p class="card-text">¡El clásico! Podés jugarlo solo o con amigos.</p>
-                        <a href="#" class="btn btn-primary">Jugar</a>
+                        <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
+                            <input type="hidden" name="juego" value="6">
+                            <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
+                        </form>
                     </div>
                 </div>
             </div>
