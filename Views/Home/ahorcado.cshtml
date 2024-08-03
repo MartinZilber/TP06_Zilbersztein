@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Ahorcado";
+    string palabra = ViewBag.palabra;
+    int? longitudPalabra = ViewBag.longitudPalabra;
+    int? vidas = ViewBag.vidas;
+}
+
+<div class="text-center">
+    <h2 class="display-4">Ahorcado</h2>
+    <p class="textojugar">¡A jugar!</p>
+    <h6>¡Adiviná la palabra!</h6>
+    <p>@ViewBag.Final</p>
+
+</div>
+<div class="corazones">
+    <p>Vidas</p>
+    @for (int i = 0; i < vidas; i++)
+    {
+        <i class="bi bi-heart-fill"></i>
+    }
+</div>
+<div class="text-center">
+    <img class="imagenahorcado" src=@ViewBag.imagenVidas>
+    @for (int i = 0; i < longitudPalabra; i++)
+    {
+        if (ViewBag.letrasDescubiertas.Count > 0 && ViewBag.letrasDescubiertas.Contains(palabra[i]))
+        {
+            if (i == 0)
+            {
+                <span>@ViewBag.palabra[i].ToString().ToUpper()</span>
+            }
+            else
+            {
+                <span>@palabra[i]</span>
+            }
+
+        }
+        else
+        {
+            <span>-</span>
+        }
+
+    }
+    <form action='@Url.Action("ProcesarAhorcado", "Home")' method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
+            <input type="text" name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
+            <input type="submit" autocomplete="off" required value="Enviar" class="btn btn-primary"></input>
+        </div>
+    </form>
+    <p>@ViewBag.palabra</p>
+    <p>@ViewBag.longitudPalabra</p>
+    <p>@ViewBag.vidas</p>
+</div>

@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Ahorcado";
+
+}
+
+<div class="text-center">
+    <h2 class="display-4">Sopa de letras</h2>
+    <p class="textojugar">¡A jugar!</p>
+    <h6>¡Encontrá todas las palabras!</h6>
+    <p>@ViewBag.Final</p>
+
+</div>
+<div class="text-center">
+    <img src=@ViewBag.imagenVidas>
+    <form action='@Url.Action("ProcesarSopa", "Home")' method="post">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Ingresá todas las palabras</label>
+            <input type="text" name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá todas las palabras">
+            <input type="submit" autocomplete="off" required value="Enviar" class="btn btn-primary"></input>
+        </div>
+    </form>
+</div>
