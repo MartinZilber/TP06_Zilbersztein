@@ -1,12 +1,13 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace TP06_Zilbersztein.Models;
 static public class Informacion
 {
-    static private string[] juegos { get; set; } = { "piedrapapeltijera", "mameig", "ahorcado", "rosco", "tateti", "sopadeletras" };
+    static private string[] juegos { get; set; } = { "piedrapapeltijera", "mameig", "ahorcado", "adivinapalabra", "tateti", "sopadeletras" };
     static public int? juegoSeleccionado { get; set; }
     static public int Nivel { get; set; }
     static public int contadorIntentos { get; set; } = 0;
@@ -30,6 +31,16 @@ static public class Informacion
     static public bool[] espaciosOcupadosCruz = new bool[9];
     static public int[] espaciosOcupados = new int[9];
     static public bool alguienGano { get; set; }
+    static public string[] palabrasAdivinar { get; set; } = {
+    "sol", "casa", "agua", "libro", "perro", "gato", "arbol", "cielo", "coche", "mesa", "silla", "flor", "niño", "sol", "luna",
+    "montaña", "rio", "maestro", "hospital", "biblioteca", "helado", "palabra", "televisión", "ventana", "computadora", "ciudad", "bicicleta", "escuela", "invierno", "vacaciones",
+    "oximoron", "paradoja", "antropologia", "metafora", "epistemología", "idiosincrasia", "hiperbole", "ontologia", "eclectico", "sinestesia", "prosopopeya", "espectroscopía", "paralelogramo", "trinomio", "semantica"};
+    static private string[] definicionesAdivinar { get; set; } ={"Estrella luminosa que da luz y calor a la Tierra", "Edificio donde vive la gente", "Líquido transparente que se encuentra en ríos, lagos y océanos", "Conjunto de hojas escritas o impresas encuadernadas", "Animal doméstico, conocido como el mejor amigo del hombre", "Animal doméstico con bigotes y orejas puntiagudas", "Planta alta con tronco leñoso y hojas", "Espacio sobre la Tierra donde están las nubes y el sol", "Vehículo con cuatro ruedas usado para transporte", "Mueble con una superficie plana sostenida por patas", "Asiento con respaldo, generalmente para una persona", "Parte colorida de una planta, muchas veces perfumada", "Persona joven, generalmente menor de 12 años", "Estrella que ilumina y calienta la Tierra", "Satélite natural de la Tierra visible por la noche",
+    "Elevación natural del terreno, generalmente de gran altura", "Corriente natural de agua que fluye hacia el mar", "Persona que enseña en una escuela", "Lugar donde se cuida y trata a los enfermos", "Lugar donde se guardan y prestan libros", "Postre congelado hecho de leche y azúcar", "Conjunto de letras que tiene significado", "Aparato que transmite imágenes y sonido", "Abertura en una pared para dejar entrar luz y aire", "Máquina electrónica para procesar datos", "Gran aglomeración urbana con muchos habitantes", "Vehículo de dos ruedas propulsado por pedales", "Institución donde se imparte educación", "Estación del año con clima frío", "Período de descanso del trabajo o estudio",
+    "Combinación de palabras con significados opuestos", "Declaración que contradice la lógica o la realidad", "Ciencia que estudia al ser humano y sus culturas", "Figura retórica que compara dos cosas sin usar 'como'", "Estudio filosófico del conocimiento y su origen", "Conjunto de características particulares de un individuo o grupo", "Exageración retórica usada para enfatizar", "Rama de la filosofía que estudia la naturaleza del ser", "Que toma elementos de diversas fuentes o estilos", "Asociación de sensaciones de diferentes sentidos", "Atribución de cualidades humanas a objetos inanimados", "Estudio de la interacción entre la radiación y la materia", "Cuadrilátero con lados opuestos paralelos", "Expresión algebraica de tres términos", "Estudio del significado de las palabras y frases"};
+    static public int numeroAdivinaPalabra { get; set; } = -4;
+    static public int adivinePalabra { get; set; }
+    static public string mensajeAdivinarPalabra { get; set; }
 
     static public void reestablecerValores()
     {
@@ -50,6 +61,7 @@ static public class Informacion
             espaciosOcupados[i] = 0;
         }
         alguienGano = false;
+        mensajeAdivinarPalabra = "";
     }
     static public string seleccionarJuego(int juego)
     {
@@ -77,6 +89,12 @@ static public class Informacion
             else if (nivel == 2) { minimo = 30; maximo = 62; }
             else { minimo = 59; maximo = 76; }
             PrepararAhorcado();
+        }
+        else if (juegoSeleccionado == 4)
+        {
+            if (nivel == 1) { minimo = 0; maximo = 15; }
+            else if (nivel == 2) { minimo = 14; maximo = 29; }
+            else { minimo = 28; maximo = 43; }
         }
         else if (juegoSeleccionado == 6)
         {
@@ -422,5 +440,26 @@ static public class Informacion
             if (espaciosLlenos) mensajeGanador = "¡Hubo un empate!";
         }
         return mensajeGanador;
+    }
+    public static string elegirPalabra()
+    {
+        numeroAdivinaPalabra = calcularNumero(minimo, maximo);
+        string definicion = definicionesAdivinar[numeroAdivinaPalabra];
+        return definicion;
+    }
+    public static string ProcesarAdivinaPalabra(string palabra)
+    {
+        mensajeAdivinarPalabra = "";
+        if (palabrasAdivinar[numeroAdivinaPalabra].Equals(palabra))
+        {
+            mensajeAdivinarPalabra = "¡Adivinaste!";
+            racha++;
+        }
+        else if (contadorIntentos == 0)
+        {
+            contadorIntentos++;
+            mensajeAdivinarPalabra = "¡No adivinaste!";
+        }
+        return mensajeAdivinarPalabra;
     }
 }

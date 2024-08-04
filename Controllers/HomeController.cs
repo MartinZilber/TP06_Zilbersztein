@@ -20,6 +20,10 @@ public class HomeController : Controller
         Informacion.reestablecerValores();
         return View();
     }
+    public IActionResult sobreNosotros()
+    {
+        return View("sobrenosotros");
+    }
     public IActionResult GuardarJuegoSeleccionado(int juego)
     {
         string ViewRetorno = Informacion.seleccionarJuego(juego);
@@ -53,6 +57,10 @@ public class HomeController : Controller
     public IActionResult explicaciontateti()
     {
         return View("explicaciontateti");
+    }
+    public IActionResult explicacionadivinapalabra()
+    {
+        return View("explicacionadivinapalabra");
     }
     public IActionResult mameig()
     {
@@ -168,6 +176,20 @@ public class HomeController : Controller
         return RedirectToAction("tateti");
     }
 
+    public IActionResult adivinapalabra()
+    {
+        string definicion = Informacion.elegirPalabra();
+        ViewBag.definicion = definicion;
+        ViewBag.contador = Informacion.racha;
+        ViewBag.Mensaje = Informacion.mensajeAdivinarPalabra;
+        return View("adivinapalabra");
+    }
+    public IActionResult ProcesarAdivinarPalabra(string palabra)
+    {
+        string mensajeGano = Informacion.ProcesarAdivinaPalabra(palabra);
+        ViewBag.mensaje = mensajeGano;
+        return RedirectToAction("adivinapalabra");
+    }
 
 
 

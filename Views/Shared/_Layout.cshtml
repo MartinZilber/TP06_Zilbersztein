@@ -4,18 +4,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TP06_Zilbersztein</title>
+    <title>@ViewData["Title"] - JuegaXpress - ¡Jugá minijuegos totalmente gratis!</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TP06_Zilbersztein.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="index">JuegaXpress</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -23,22 +24,24 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre nosotros</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Presidentes
+                                Nuestros juegos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"></a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
+                                <li><a class="dropdown-item" href="explicacionpiedrapapeltijera">Piedra, papel o
+                                        tijera</a></li>
+                                <li><a class="dropdown-item" href="explicacionmameig">¿El número es...?</a></li>
+                                <li><a class="dropdown-item" href="explicacionahorcado">Ahorcado</a></li>
+                                <li><a class="dropdown-item" href="explicacionadivinapalabra">¡Adiviná la palabra!</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="explicaciontateti">Ta-te-ti</a></li>
+                                <li><a class="dropdown-item" href="explicacionsopadeletras">Sopa de letras</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sobrenosotros">Sobre nosotros</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -55,9 +58,36 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - TP06_Zilbersztein - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="container-fluid">
+            <div class="row p-5 text-black">
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h3">JuegaXpress</p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">Redes sociales</p>
+                    <a class="text-black" href="#">
+                        <p>Twitter</p>
+                    </a>
+                    <a class="text-black" href="#">
+                        <p>Facebook</p>
+                    </a>
+                    <a class="text-black" href="#">
+                        <p>Instagram</p>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">Ubicación</p>
+                    <p>CABA</p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">Contacto</p>
+                    <p class="text-black">+54 9 7629-1828</p>
+                    <p class="email">martinz@developer.com</p>
+                </div>
+            </div>
+            <p class="empresa">&copy; 2024 JuegaXpress. Todos los derechos reservados.</p>
+
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

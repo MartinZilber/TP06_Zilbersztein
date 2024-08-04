@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Adiviná la palabra";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Adiviná la palabra</h2>
+    <p class="textojugar">¡A jugar!</p>
+    <h6>¡Leé la definición de la palabra!</h6>
+    <p class="mensajeaviso">@ViewBag.Mensaje</p>
+    <div class="alert alert-primary" role="alert">
+        Racha: @ViewBag.contador
+    </div>
+    <div class="contenedorlibro">
+        <img src="/images/libro abierto.png" class="libro">
+        <h4 class="definicion">@ViewBag.definicion</h4>
+    </div>
+
+    <form action='@Url.Action("ProcesarAdivinarPalabra", "Home")'>
+        <div class="mb-3 textoadivinarpalabra">
+            <label for="exampleFormControlInput1" class="form-label">Ingresá la palabra</label>
+            <input type="text" autocomplete="off" required name="palabra" class="form-control"
+                id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
+            <input type="submit" value="Enviar" class="btn btn-primary"></input>
+        </div>
+    </form>
+</div>

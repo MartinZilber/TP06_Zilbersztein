@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">MINIJUEGOS</h1>
-    <p>¿Estás aburrido y no sabés qué hacer? ¡Acá tenés juegos cortos para divertirte!
+    <p class="mensajeindex">¿Estás aburrido y no sabés qué hacer? ¡Acá tenés juegos cortos para divertirte!
     <div class="container text-center">
         <div class="row align-items-start">
             <div class="col">
@@ -12,7 +12,7 @@
                     <img src="/images/Piedra, papel o tijera.jpg" class="card-img-top" alt="Piedra, papel o tijera">
                     <div class="card-body">
                         <h5 class="card-title">Piedra, papel o tijera</h5>
-                        <p class="card-text">¡El clásico! Podés jugarlo solo o con amigos.</p>
+                        <p class="card-text">¡El clásico! Utilizá los tres elementos para consagrarte ganador de esta lucha sin fin.</p>
                         <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
                             <input type="hidden" name="juego" value="1">
                             <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
@@ -22,10 +22,10 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <img src="..." class="card-img-top" alt="MAMEIG">
+                    <img src="/images/mayormenor.png" class="card-img-top" alt="MAMEIG">
                     <div class="card-body">
                         <h5 class="card-title">¿El número es...?</h5>
-                        <p class="card-text">¿Es mayor? ¿Es menor? ¿Es igual? ¡Comprobalo en este maravilloso juego de azar, cuyo ganador podría considerarse el rey de la suerte!</p>
+                        <p class="card-text">¿Es mayor? ¿Es menor? ¿Es igual? ¡Comprobalo en este maravilloso juego de azar! ¡Buena suerte!</p>
                         <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
                             <input type="hidden" name="juego" value="2">
                             <input type="submit" value="Jugar" class="btn btn-primary"></input>
@@ -38,7 +38,7 @@
                     <img src="/images/Ahorcado.png" class="card-img-top imgajustada" alt="Ahorcado">
                     <div class="card-body">
                         <h5 class="card-title">Ahorcado</h5>
-                        <p class="card-text">¡Cuidado! Adiviná la palabra en la que estamos pensando, pero, ¡sé prudente! No querrías ser ahorcado...</p>
+                        <p class="card-text">Adiviná la palabra que estamos pensando, pero, ¡sé prudente! No querrías ser ahorcado...</p>
                         <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
                             <input type="hidden" name="juego" value="3">
                             <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
@@ -52,10 +52,10 @@
         <div class="row align-items-start">
             <div class="col">
                 <div class="card">
-                    <img src="/images/El rosco.gif" class="card-img-top" alt="El rosco">
+                    <img src="/images/adiviná la palabra.jpg" class="card-img-top" alt="El rosco">
                     <div class="card-body">
-                        <h5 class="card-title">El rosco</h5>
-                        <p class="card-text">¿Cuántas palabras conocés? ¡Comprobalo en este desafiante juego!</p>
+                        <h5 class="card-title">Adiviná la palabra</h5>
+                        <p class="card-text">¿Cuántas palabras y sus significados conocés? ¡Comprobalo en este desafiante juego!</p>
                         <form action='@Url.Action("GuardarJuegoSeleccionado", "Home")'>
                             <input type="hidden" name="juego" value="4">
                             <input type="submit" value="Jugar" class="btn btn-primary" for="btn-check"></input>
