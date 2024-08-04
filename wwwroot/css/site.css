@@ -241,4 +241,10 @@ form .mb-3 .btn-primary{
   cursor: pointer;
   display: block;
 }
+.reintentar input{
+  margin-top:1.5%;
+}
+.text-center .mensajeganador{
+  margin-left:26%;
+}
   

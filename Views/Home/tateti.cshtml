@@ -6,12 +6,7 @@
     <h2 class="display-4">Ta-te-ti</h2>
     <p class="textojugar">¡A jugar!</p>
     <h6>¡Formá tres en línea!</h6>
-    <p>@ViewBag.minimo</p>
-    <p>@ViewBag.maximo</p>
-
-</div>
-<div class="text-center">
-    <img class="imagenahorcado" src>
+    <p class="mensajeganador">@ViewBag.mensajeGanador</p>
     <section class="grillatateti">
         <div class="fila">
             <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
@@ -56,4 +51,7 @@
             </form>
         </div>
     </section>
+    <form class="reintentar" action='@Url.Action("ReintentarTaTeTi", "Home")' method="post">
+        <input type="submit" name="Jugar de nuevo" value="Jugar de nuevo">
+    </form>
 </div>

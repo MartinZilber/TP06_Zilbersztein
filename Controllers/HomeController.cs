@@ -142,16 +142,29 @@ public class HomeController : Controller
     }
     public IActionResult tateti()
     {
+        string ganador;
+        int jugada = Informacion.esPrimeraJugada();
+        if (jugada == 2)
+        {
+            Informacion.jugadaBotTaTeTi();
+        }
         int[] espaciosOcupados = Informacion.procesarEspacios();
         ViewBag.espaciosOcupados = espaciosOcupados;
-        ViewBag.minimo = Informacion.minimo;
-        ViewBag.maximo = Informacion.maximo;
+        ganador = Informacion.determinarGanador();
+        ViewBag.mensajeGanador = ganador;
         return View("tateti");
     }
     public IActionResult ProcesarTaTeTi(int jugada)
     {
-        Informacion.procesarTaTeTi(jugada);
-        Informacion.jugadaBotTaTeTi();
+        bool esPosibleJugador = Informacion.procesarTaTeTi(jugada);
+        string ganador = Informacion.determinarGanador();
+        if (esPosibleJugador && ganador == "" && !Informacion.alguienGano)
+            Informacion.jugadaBotTaTeTi();
+        return RedirectToAction("tateti");
+    }
+    public IActionResult ReintentarTaTeTi()
+    {
+        Informacion.ReestablecerTaTeTi();
         return RedirectToAction("tateti");
     }
 

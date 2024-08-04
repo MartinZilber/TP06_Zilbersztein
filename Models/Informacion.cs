@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing.Constraints;
 
@@ -28,6 +29,7 @@ static public class Informacion
     static public bool[] espaciosOcupadosCirculo = new bool[9];
     static public bool[] espaciosOcupadosCruz = new bool[9];
     static public int[] espaciosOcupados = new int[9];
+    static public bool alguienGano { get; set; }
 
     static public void reestablecerValores()
     {
@@ -47,6 +49,7 @@ static public class Informacion
             espaciosOcupadosCruz[i] = false;
             espaciosOcupados[i] = 0;
         }
+        alguienGano = false;
     }
     static public string seleccionarJuego(int juego)
     {
@@ -307,15 +310,17 @@ static public class Informacion
             contadorIntentos++;
         return esCorrecto;
     }
-    static public void procesarTaTeTi(int jugada)
+    static public bool procesarTaTeTi(int jugada)
     {
+        bool esPosible = false;
         jugada--;
-        if (!espaciosOcupadosCirculo[jugada] && !espaciosOcupadosCruz[jugada])
+        if (!espaciosOcupadosCirculo[jugada] && !espaciosOcupadosCruz[jugada] && !alguienGano)
         {
             espaciosOcupadosCirculo[jugada] = true;
             espaciosOcupados[jugada] = 1;
+            esPosible = true;
         }
-
+        return esPosible;
     }
     static public void jugadaBotTaTeTi()
     {
@@ -326,9 +331,10 @@ static public class Informacion
             if (espaciosOcupados[contadorEspacios] == 0)
             {
                 noOcupado = true;
-                contadorEspacios++;
             }
-        } while (!noOcupado || contadorEspacios == 9);
+            else
+                contadorEspacios++;
+        } while (!noOcupado && contadorEspacios <= 8);
         if (noOcupado)
         {
             do
@@ -361,5 +367,60 @@ static public class Informacion
                 espacios[i] = 0;
         }
         return espacios;
+    }
+    static public void ReestablecerTaTeTi()
+    {
+        for (int i = 0; i < espaciosOcupados.Length; i++)
+        {
+            espaciosOcupados[i] = 0;
+            espaciosOcupadosCruz[i] = false;
+            espaciosOcupadosCirculo[i] = false;
+            alguienGano = false;
+        }
+    }
+    static public int esPrimeraJugada()
+    {
+        bool esPrimeraJugada = true;
+        int contador = 0, jugada = 1;
+        while (esPrimeraJugada && contador < maximo - 1)
+        {
+            if (espaciosOcupados[contador] != 0)
+                esPrimeraJugada = false;
+            else
+                contador++;
+        }
+        if (esPrimeraJugada)
+        {
+            jugada = calcularNumero(1, 3);
+        }
+        return jugada;
+    }
+    static public string determinarGanador()
+    {
+        int contador = 0;
+        bool espaciosLlenos = true;
+        string mensajeGanador = "";
+        if (espaciosOcupadosCirculo[0] && espaciosOcupadosCirculo[1] && espaciosOcupadosCirculo[2] || espaciosOcupadosCirculo[3] && espaciosOcupadosCirculo[4] && espaciosOcupadosCirculo[5] || espaciosOcupadosCirculo[6] && espaciosOcupadosCirculo[7] && espaciosOcupadosCirculo[8] || espaciosOcupadosCirculo[0] && espaciosOcupadosCirculo[3] && espaciosOcupadosCirculo[6] || espaciosOcupadosCirculo[1] && espaciosOcupadosCirculo[4] && espaciosOcupadosCirculo[7] || espaciosOcupadosCirculo[2] && espaciosOcupadosCirculo[5] && espaciosOcupadosCirculo[8] || espaciosOcupadosCirculo[0] && espaciosOcupadosCirculo[4] && espaciosOcupadosCirculo[8] || espaciosOcupadosCirculo[2] && espaciosOcupadosCirculo[4] && espaciosOcupadosCirculo[6])
+        {
+            mensajeGanador = "¡Ganaste!";
+            alguienGano = true;
+        }
+        else if (espaciosOcupadosCruz[0] && espaciosOcupadosCruz[1] && espaciosOcupadosCruz[2] || espaciosOcupadosCruz[3] && espaciosOcupadosCruz[4] && espaciosOcupadosCruz[5] || espaciosOcupadosCruz[6] && espaciosOcupadosCruz[7] && espaciosOcupadosCruz[8] || espaciosOcupadosCruz[0] && espaciosOcupadosCruz[3] && espaciosOcupadosCruz[6] || espaciosOcupadosCruz[1] && espaciosOcupadosCruz[4] && espaciosOcupadosCruz[7] || espaciosOcupadosCruz[2] && espaciosOcupadosCruz[5] && espaciosOcupadosCruz[8] || espaciosOcupadosCruz[0] && espaciosOcupadosCruz[4] && espaciosOcupadosCruz[8] || espaciosOcupadosCruz[2] && espaciosOcupadosCruz[4] && espaciosOcupadosCruz[6])
+        {
+            mensajeGanador = "¡Perdiste!";
+            alguienGano = true;
+        }
+        else
+        {
+            do
+            {
+                if (espaciosOcupados[contador] == 0)
+                    espaciosLlenos = false;
+                else
+                    contador++;
+            } while (contador < maximo - 1 && espaciosLlenos);
+            if (espaciosLlenos) mensajeGanador = "¡Hubo un empate!";
+        }
+        return mensajeGanador;
     }
 }
