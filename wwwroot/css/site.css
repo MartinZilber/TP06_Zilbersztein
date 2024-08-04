@@ -138,6 +138,10 @@ h5 {
   justify-content: space-around;
   flex-wrap: nowrap;
 }
+.datomameig{
+  margin-left:26%;
+  margin-bottom:0%;
+}
 
 .mameig .btn {
   float: left;
@@ -197,9 +201,7 @@ h5 {
   justify-content: center;
   align-items: center;
   width: 150px;
-  /* Ancho fijo */
   height: 200px;
-  /* Alto fijo ajustado para más espacio */
   margin: 10px;
   text-align: center;
 }
@@ -348,6 +350,10 @@ form .mb-3 .btn-primary {
   margin-left: 27%;
 }
 
+.form {
+  min-height: 17.6vh;
+}
+
 footer {
   background-color: whitesmoke;
   margin-top: 7%;
@@ -383,7 +389,4 @@ footer .empresa {
   display: flex;
   justify-content: start;
   margin-left: 3.5%;
-}
-
-.text-center {
 }

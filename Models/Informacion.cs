@@ -44,7 +44,6 @@ static public class Informacion
 
     static public void reestablecerValores()
     {
-        juegoString = "";
         juegoSeleccionado = null;
         racha = 0;
         letrasDescubiertas.Clear();
@@ -62,6 +61,8 @@ static public class Informacion
         }
         alguienGano = false;
         mensajeAdivinarPalabra = "";
+        primerNumeroMaMeIg = null;
+        segundoNumeroMaMeIg = null;
     }
     static public string seleccionarJuego(int juego)
     {
@@ -459,6 +460,7 @@ static public class Informacion
         {
             contadorIntentos++;
             mensajeAdivinarPalabra = "¡No adivinaste!";
+            racha = 0;
         }
         return mensajeAdivinarPalabra;
     }

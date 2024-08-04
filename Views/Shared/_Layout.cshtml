@@ -30,18 +30,18 @@
                                 Nuestros juegos
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="explicacionpiedrapapeltijera">Piedra, papel o
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 1})">Piedra, papel o
                                         tijera</a></li>
-                                <li><a class="dropdown-item" href="explicacionmameig">¿El número es...?</a></li>
-                                <li><a class="dropdown-item" href="explicacionahorcado">Ahorcado</a></li>
-                                <li><a class="dropdown-item" href="explicacionadivinapalabra">¡Adiviná la palabra!</a>
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 2})">¿El número es...?</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 3})">Ahorcado</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 4})">¡Adiviná la palabra!</a>
                                 </li>
-                                <li><a class="dropdown-item" href="explicaciontateti">Ta-te-ti</a></li>
-                                <li><a class="dropdown-item" href="explicacionsopadeletras">Sopa de letras</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 5})">Ta-te-ti</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("GuardarJuegoSeleccionado", "Home", new {juego = 6})">Sopa de letras</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sobrenosotros">Sobre nosotros</a>
+                            <a class="nav-link" href="Home/sobrenosotros">Sobre nosotros</a>
                         </li>
                     </ul>
                     <form class="d-flex">

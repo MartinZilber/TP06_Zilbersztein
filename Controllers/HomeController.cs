@@ -26,6 +26,7 @@ public class HomeController : Controller
     }
     public IActionResult GuardarJuegoSeleccionado(int juego)
     {
+        Informacion.reestablecerValores();
         string ViewRetorno = Informacion.seleccionarJuego(juego);
         return View("explicacion" + ViewRetorno);
     }
@@ -60,6 +61,7 @@ public class HomeController : Controller
     }
     public IActionResult explicacionadivinapalabra()
     {
+        Informacion.reestablecerValores();
         return View("explicacionadivinapalabra");
     }
     public IActionResult mameig()
@@ -135,7 +137,6 @@ public class HomeController : Controller
         else
             ViewBag.Mensaje = "Oh, no, ¡algo hiciste mal!";
         ViewBag.imagensopa = "/images/Sopa" + Informacion.sopaNumero + ".png";
-        ViewBag.respuestaFinalSopa = Informacion.respuestaFinalSopa;
         return View(Informacion.juegoString);
     }
 
