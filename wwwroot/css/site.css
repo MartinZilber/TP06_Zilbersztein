@@ -215,4 +215,30 @@ form .mb-3 .btn-primary{
 .mensajeerrorsopa{
   margin-left:26%;
 }
+.grillatateti {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.grillatateti .fila {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.grillatateti .fila form{
+  flex: 1 1 calc(33.33% - 10px);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.grillatateti .fila input{
+  width: 100%;
+  height: auto;
+  border: 1px solid black;
+  cursor: pointer;
+  display: block;
+}
   

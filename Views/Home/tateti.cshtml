@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Ta-te-ti";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Ta-te-ti</h2>
+    <p class="textojugar">¡A jugar!</p>
+    <h6>¡Formá tres en línea!</h6>
+    <p>@ViewBag.minimo</p>
+    <p>@ViewBag.maximo</p>
+
+</div>
+<div class="text-center">
+    <img class="imagenahorcado" src>
+    <section class="grillatateti">
+        <div class="fila">
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                    <input type="hidden" name="jugada" value="1" </input>
+                    <input type="image" src="/images/@ViewBag.espaciosOcupados[0] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="2" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[1] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="3" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[2] 1.png" </input>
+            </form>
+        </div>
+        <div class="fila">
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="4" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[3] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="5" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[4] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="6" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[5] 1.png" </input>
+            </form>
+        </div>
+        <div class="fila">
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="7" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[6] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="8" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[7] 1.png" </input>
+            </form>
+            <form action='@Url.Action("ProcesarTaTeTi", "Home")' method="post">
+                <input type="hidden" name="jugada" value="9" </input>
+                <input type="image" src="/images/@ViewBag.espaciosOcupados[8] 1.png" </input>
+            </form>
+        </div>
+    </section>
+</div>

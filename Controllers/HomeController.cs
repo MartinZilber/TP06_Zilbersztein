@@ -46,6 +46,14 @@ public class HomeController : Controller
     {
         return View("explicacionahorcado");
     }
+    public IActionResult explicacionsopadeletras()
+    {
+        return View("explicacionsopadeletras");
+    }
+    public IActionResult explicaciontateti()
+    {
+        return View("explicaciontateti");
+    }
     public IActionResult mameig()
     {
         int numero = Informacion.calcularNumero(0, Informacion.maximo);
@@ -132,9 +140,20 @@ public class HomeController : Controller
         else
             return RedirectToAction("sopadeletras", new { gano = false });
     }
-
-
-
+    public IActionResult tateti()
+    {
+        int[] espaciosOcupados = Informacion.procesarEspacios();
+        ViewBag.espaciosOcupados = espaciosOcupados;
+        ViewBag.minimo = Informacion.minimo;
+        ViewBag.maximo = Informacion.maximo;
+        return View("tateti");
+    }
+    public IActionResult ProcesarTaTeTi(int jugada)
+    {
+        Informacion.procesarTaTeTi(jugada);
+        Informacion.jugadaBotTaTeTi();
+        return RedirectToAction("tateti");
+    }
 
 
 

@@ -25,6 +25,9 @@ static public class Informacion
     static public string respuestaIngresadaUsuario { get; set; }
     static public int sopaNumero { get; set; }
     static public int? sopaAnterior { get; set; }
+    static public bool[] espaciosOcupadosCirculo = new bool[9];
+    static public bool[] espaciosOcupadosCruz = new bool[9];
+    static public int[] espaciosOcupados = new int[9];
 
     static public void reestablecerValores()
     {
@@ -38,12 +41,22 @@ static public class Informacion
         contadorIntentos = 0;
         respuestaFinalSopa = "";
         for (int i = 0; i < palabrasSopa.Length; i++)
+        {
             palabrasSopa[i] = "";
+            espaciosOcupadosCirculo[i] = false;
+            espaciosOcupadosCruz[i] = false;
+            espaciosOcupados[i] = 0;
+        }
     }
     static public string seleccionarJuego(int juego)
     {
         juegoSeleccionado = juego;
         juegoString = juegos[(int)juegoSeleccionado - 1];
+        if (juegoSeleccionado == 5)
+        {
+            minimo = 1;
+            maximo = 10;
+        }
         return juegoString;
     }
     static public void EstablecerNivel(int nivel)
@@ -293,5 +306,60 @@ static public class Informacion
         else if (contadorIntentos == 0)
             contadorIntentos++;
         return esCorrecto;
+    }
+    static public void procesarTaTeTi(int jugada)
+    {
+        jugada--;
+        if (!espaciosOcupadosCirculo[jugada] && !espaciosOcupadosCruz[jugada])
+        {
+            espaciosOcupadosCirculo[jugada] = true;
+            espaciosOcupados[jugada] = 1;
+        }
+
+    }
+    static public void jugadaBotTaTeTi()
+    {
+        int jugada, contadorEspacios = 0;
+        bool esPosible = false, noOcupado = false;
+        do
+        {
+            if (espaciosOcupados[contadorEspacios] == 0)
+            {
+                noOcupado = true;
+                contadorEspacios++;
+            }
+        } while (!noOcupado || contadorEspacios == 9);
+        if (noOcupado)
+        {
+            do
+            {
+                jugada = calcularNumero(minimo, maximo);
+                jugada--;
+                if (!espaciosOcupadosCirculo[jugada] && !espaciosOcupadosCruz[jugada])
+                {
+                    esPosible = true;
+                    espaciosOcupadosCruz[jugada] = true;
+                    espaciosOcupados[jugada] = 2;
+                }
+
+            } while (!esPosible);
+        }
+
+
+
+    }
+    static public int[] procesarEspacios()
+    {
+        int[] espacios = new int[maximo];
+        for (int i = 0; i < maximo - 1; i++)
+        {
+            if (espaciosOcupadosCirculo[i])
+                espacios[i] = 1;
+            else if (espaciosOcupadosCruz[i])
+                espacios[i] = 2;
+            else
+                espacios[i] = 0;
+        }
+        return espacios;
     }
 }
