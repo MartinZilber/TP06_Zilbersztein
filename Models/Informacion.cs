@@ -82,9 +82,9 @@ static public class Informacion
         Nivel = nivel;
         if (juegoSeleccionado == 2)
         {
-            if (nivel == 1) maximo = 20;
+            if (nivel == 1) maximo = 100;
             else if (nivel == 2) maximo = 50;
-            else maximo = 100;
+            else maximo = 20;
         }
         else if (juegoSeleccionado == 3)
         {
