@@ -40,7 +40,8 @@ static public class Informacion
     static private string[] definicionesAdivinar { get; set; } ={"Estrella luminosa que da luz y calor a la Tierra", "Edificio donde vive la gente", "Líquido transparente que se encuentra en ríos, lagos y océanos", "Conjunto de hojas escritas o impresas encuadernadas", "Animal doméstico, conocido como el mejor amigo del hombre", "Animal doméstico con bigotes y orejas puntiagudas", "Planta alta con tronco leñoso y hojas", "Espacio sobre la Tierra donde están las nubes y el sol", "Vehículo con cuatro ruedas usado para transporte", "Mueble con una superficie plana sostenida por patas", "Asiento con respaldo, generalmente para una persona", "Parte colorida de una planta, muchas veces perfumada", "Persona joven, generalmente menor de 12 años", "Estrella que ilumina y calienta la Tierra", "Satélite natural de la Tierra visible por la noche",
     "Elevación natural del terreno, generalmente de gran altura", "Corriente natural de agua que fluye hacia el mar", "Persona que enseña en una escuela", "Lugar donde se cuida y trata a los enfermos", "Lugar donde se guardan y prestan libros", "Postre congelado hecho de leche y azúcar", "Conjunto de letras que tiene significado", "Aparato que transmite imágenes y sonido", "Abertura en una pared para dejar entrar luz y aire", "Máquina electrónica para procesar datos", "Gran aglomeración urbana con muchos habitantes", "Vehículo de dos ruedas propulsado por pedales", "Institución donde se imparte educación", "Estación del año con clima frío", "Período de descanso del trabajo o estudio",
     "Combinación de palabras con significados opuestos", "Declaración que contradice la lógica o la realidad", "Ciencia que estudia al ser humano y sus culturas", "Figura retórica que compara dos cosas sin usar 'como'", "Estudio filosófico del conocimiento y su origen", "Conjunto de características particulares de un individuo o grupo", "Exageración retórica usada para enfatizar", "Rama de la filosofía que estudia la naturaleza del ser", "Que toma elementos de diversas fuentes o estilos", "Asociación de sensaciones de diferentes sentidos", "Atribución de cualidades humanas a objetos inanimados", "Estudio de la interacción entre la radiación y la materia", "Cuadrilátero con lados opuestos paralelos", "Expresión algebraica de tres términos", "Estudio del significado de las palabras y frases"};
-    static public int numeroAdivinaPalabra { get; set; } = -4;
+    static public int numeroAdivinaPalabra { get; set; }
+    static private int numeroAdivinaPalabraAnterior { get; set; }
     static public int adivinePalabra { get; set; }
     static public string mensajeAdivinarPalabra { get; set; }
 
@@ -452,7 +453,9 @@ static public class Informacion
     }
     public static string elegirPalabra()
     {
-        numeroAdivinaPalabra = calcularNumero(minimo, maximo);
+        while (numeroAdivinaPalabra == numeroAdivinaPalabraAnterior)
+        { numeroAdivinaPalabra = calcularNumero(minimo, maximo); }
+        numeroAdivinaPalabraAnterior = numeroAdivinaPalabra;
         string definicion = definicionesAdivinar[numeroAdivinaPalabra];
         return definicion;
     }
