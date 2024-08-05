@@ -9,7 +9,7 @@
     <h2 class="display-4">Ahorcado</h2>
     <p class="textojugar">¡A jugar!</p>
     <h6>¡Adiviná la palabra!</h6>
-    <p>@ViewBag.Final</p>
+    <p class="finalahorcado">@ViewBag.Final</p>
 
 </div>
 <div class="corazones">
@@ -41,13 +41,20 @@
         }
 
     }
-    <form action='@Url.Action("ProcesarAhorcado", "Home")' method="post">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
-            <input type="text" autocomplete="off" required name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
-            <input type="submit"  value="Enviar" class="btn btn-primary"></input>
-        </div>
-    </form>
+    <section class="formulariosahorcado">
+        <form action='@Url.Action("ProcesarAhorcado", "Home")' method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
+                <input type="text" autocomplete="off" required name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
+                <input type="submit"  value="Enviar" class="btn btn-primary">
+            </div>
+        </form>
+            <div class="mb-3 reintentarahorcado">
+                <form action='@Url.Action("ReiniciarAhorcado", "Home")' method="post">
+                    <input type="submit" value="Reiniciar" class="btn btn-secondary">
+                </form>
+            </div>
+    </section>
     <p>@ViewBag.palabra</p>
     <p>@ViewBag.longitudPalabra</p>
     <p>@ViewBag.vidas</p>

@@ -19,6 +19,8 @@ static public class Informacion
     static public string juegoString { get; set; }
     static private string[] jugadasPPT { get; set; } = { "piedra", "papel", "tijera" };
     static private string[] palabrasAhorcado { get; set; } = { "casa", "agua", "silla", "mesa", "rápido", "panal", "verde", "luna", "gato", "cielo", "lente", "cama", "miel", "tren", "flor", "pared", "reloj", "fresa", "nieve", "llave", "pluma", "huevo", "ropa", "arena", "rata", "boca", "soler", "viento", "fumar", "dedo", "recorrido", "peculiaridad", "satisfactorio", "abandonado", "corregiría", "ponderarían", "adquisición", "identificar", "construcción", "simplificación", "actividades", "comprensible", "proporcionar", "refrigerante", "conocimiento", "establecería", "percepción", "desarrollar", "regularidad", "contradictor", "reputación", "notificaciones", "desigualdad", "manipulador", "funcionalidad", "producción", "colaboración", "decodificación", "diferenciación", "aplicación", "desafortunadamente", "electroencefalograma", "inconstitucionalidad", "contrarrevolucionario", "desproporcionado", "desafiliación", "extraordinario", "incompatibilidad", "multidisciplinario", "transcontinental", "hiperpolarización", "preternaturalmente", "restauracionista", "descentralización", "neurotransmisores" };
+    static public int numeroAhorcado { get; set; }
+    static public string palabraAnteriorAhorcado { get; set; }
     static private string palabraElegida { get; set; }
     static private List<char> letrasDescubiertas { get; set; } = new List<char>() { 'a', 'e', 'i', 'o', 'u' };
     static public int vidas { get; set; } = 7;
@@ -90,6 +92,7 @@ static public class Informacion
             else if (nivel == 2) { minimo = 30; maximo = 62; }
             else { minimo = 59; maximo = 76; }
             PrepararAhorcado();
+            palabraAnteriorAhorcado = palabraElegida;
         }
         else if (juegoSeleccionado == 4)
         {
@@ -107,8 +110,13 @@ static public class Informacion
     }
     static public void PrepararAhorcado()
     {
-        int numero = calcularNumero(minimo, maximo);
-        palabraElegida = palabrasAhorcado[numero];
+        numeroAhorcado = calcularNumero(minimo, maximo);
+        while (palabraElegida.Equals(palabraAnteriorAhorcado))
+        {
+            numeroAhorcado = calcularNumero(minimo, maximo);
+            palabraElegida = palabrasAhorcado[numeroAhorcado];
+        }
+        palabraAnteriorAhorcado = palabraElegida;
         letrasDescubiertas.Clear();
         vidas = 7;
     }
@@ -175,7 +183,7 @@ static public class Informacion
     static public bool ProcesarAhorcadoPalabra(string jugada)
     {
         bool gano = false;
-        if (jugada != palabraElegida)
+        if (!jugada.Equals(palabraElegida))
             vidas = 0;
         else
             gano = true;

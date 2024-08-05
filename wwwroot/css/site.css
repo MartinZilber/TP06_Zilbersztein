@@ -241,6 +241,9 @@ span {
 .imagenahorcado {
   clear: left;
 }
+.finalahorcado{
+  margin-left:26%;
+}
 
 form .mb-3 label {
   margin-top: 2%;

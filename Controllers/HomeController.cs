@@ -20,7 +20,7 @@ public class HomeController : Controller
         Informacion.reestablecerValores();
         return View();
     }
-    public IActionResult sobreNosotros()
+    public IActionResult sobrenosotros()
     {
         return View("sobrenosotros");
     }
@@ -91,23 +91,20 @@ public class HomeController : Controller
         ViewBag.jugadaBot = $"/images/{jugadaBot.ToLower()}.png";
         return View("piedrapapeltijera");
     }
-    public IActionResult ahorcado(bool victoria)
+    public IActionResult ahorcado(bool gano = true)
     {
         ViewBag.vidas = Informacion.vidas;
-        if (ViewBag.vidas == 0)
+        if (ViewBag.vidas == 0 || gano)
         {
+            if (ViewBag.vidas == 0) ViewBag.Final = "¡Perdiste!"; 
+            else if (gano) ViewBag.Final = "¡Ganaste!";
             Informacion.PrepararAhorcado();
-            ViewBag.Final = "¡Perdiste!";
-        }
-        else if (victoria)
-        {
-            Informacion.PrepararAhorcado();
-            ViewBag.Final = "¡Ganaste!";
         }
         ViewBag.palabra = Informacion.RetornarPalabra();
         ViewBag.longitudPalabra = ViewBag.palabra.Length;
         ViewBag.letrasDescubiertas = Informacion.RetornarLetrasDescubiertas();
         ViewBag.imagenVidas = "/images/" + Informacion.vidas + "vidas.png";
+        ViewBag.palabraAhorcadoAnterior = Informacion.palabraAnteriorAhorcado;
         return View("ahorcado");
     }
     public IActionResult ProcesarAhorcado(string jugada)
@@ -118,6 +115,11 @@ public class HomeController : Controller
         else if (jugada.Length == 1)
             gano = Informacion.ProcesarAhorcadoLetra(jugada);
         return RedirectToAction(Informacion.juegoString, new { gano });
+    }
+    public IActionResult ReiniciarAhorcado()
+    {
+        Informacion.PrepararAhorcado();
+        return RedirectToAction("ahorcado");
     }
     public IActionResult sopadeletras(bool gano = false)
     {
