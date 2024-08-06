@@ -24,6 +24,7 @@ static public class Informacion
     static public string palabraAnteriorAhorcado { get; set; }
     static private string palabraElegida { get; set; }
     static private List<char> letrasDescubiertas { get; set; } = new List<char>() { 'a', 'e', 'i', 'o', 'u' };
+    static private List<char> letrasArriesgadas { get; set; } = new List<char>();
     static public int vidas { get; set; } = 7;
     static public string[] palabrasSopa { get; set; } = new string[9];
     static public string respuestaFinalSopa { get; set; }
@@ -35,10 +36,10 @@ static public class Informacion
     static public int[] espaciosOcupados = new int[9];
     static public bool alguienGano { get; set; }
     static public string[] palabrasAdivinar { get; set; } = {
-    "sol", "casa", "agua", "libro", "perro", "gato", "arbol", "cielo", "coche", "mesa", "silla", "flor", "niño", "sol", "luna",
+    "casa", "agua", "libro", "perro", "gato", "arbol", "cielo", "coche", "mesa", "silla", "flor", "niño", "sol", "luna",
     "montaña", "rio", "maestro", "hospital", "biblioteca", "helado", "palabra", "televisión", "ventana", "computadora", "ciudad", "bicicleta", "escuela", "invierno", "vacaciones",
     "oximoron", "paradoja", "antropologia", "metafora", "epistemología", "idiosincrasia", "hiperbole", "ontologia", "eclectico", "sinestesia", "prosopopeya", "espectroscopía", "paralelogramo", "trinomio", "semantica"};
-    static private string[] definicionesAdivinar { get; set; } ={"Estrella luminosa que da luz y calor a la Tierra", "Edificio donde vive la gente", "Líquido transparente que se encuentra en ríos, lagos y océanos", "Conjunto de hojas escritas o impresas encuadernadas", "Animal doméstico, conocido como el mejor amigo del hombre", "Animal doméstico con bigotes y orejas puntiagudas", "Planta alta con tronco leñoso y hojas", "Espacio sobre la Tierra donde están las nubes y el sol", "Vehículo con cuatro ruedas usado para transporte", "Mueble con una superficie plana sostenida por patas", "Asiento con respaldo, generalmente para una persona", "Parte colorida de una planta, muchas veces perfumada", "Persona joven, generalmente menor de 12 años", "Estrella que ilumina y calienta la Tierra", "Satélite natural de la Tierra visible por la noche",
+    static private string[] definicionesAdivinar { get; set; } ={"Edificio donde vive la gente", "Líquido transparente que se encuentra en ríos, lagos y océanos", "Conjunto de hojas escritas o impresas encuadernadas", "Animal doméstico, conocido como el mejor amigo del hombre", "Animal doméstico con bigotes y orejas puntiagudas", "Planta alta con tronco leñoso y hojas", "Espacio sobre la Tierra donde están las nubes y el sol", "Vehículo con cuatro ruedas usado para transporte", "Mueble con una superficie plana sostenida por patas", "Asiento con respaldo, generalmente para una persona", "Parte colorida de una planta, muchas veces perfumada", "Persona joven, generalmente menor de 12 años", "Estrella que ilumina y calienta la Tierra", "Satélite natural de la Tierra visible por la noche",
     "Elevación natural del terreno, generalmente de gran altura", "Corriente natural de agua que fluye hacia el mar", "Persona que enseña en una escuela", "Lugar donde se cuida y trata a los enfermos", "Lugar donde se guardan y prestan libros", "Postre congelado hecho de leche y azúcar", "Conjunto de letras que tiene significado", "Aparato que transmite imágenes y sonido", "Abertura en una pared para dejar entrar luz y aire", "Máquina electrónica para procesar datos", "Gran aglomeración urbana con muchos habitantes", "Vehículo de dos ruedas propulsado por pedales", "Institución donde se imparte educación", "Estación del año con clima frío", "Período de descanso del trabajo o estudio",
     "Combinación de palabras con significados opuestos", "Declaración que contradice la lógica o la realidad", "Ciencia que estudia al ser humano y sus culturas", "Figura retórica que compara dos cosas sin usar 'como'", "Estudio filosófico del conocimiento y su origen", "Conjunto de características particulares de un individuo o grupo", "Exageración retórica usada para enfatizar", "Rama de la filosofía que estudia la naturaleza del ser", "Que toma elementos de diversas fuentes o estilos", "Asociación de sensaciones de diferentes sentidos", "Atribución de cualidades humanas a objetos inanimados", "Estudio de la interacción entre la radiación y la materia", "Cuadrilátero con lados opuestos paralelos", "Expresión algebraica de tres términos", "Estudio del significado de las palabras y frases"};
     static public int numeroAdivinaPalabra { get; set; }
@@ -51,6 +52,7 @@ static public class Informacion
         juegoSeleccionado = null;
         racha = 0;
         letrasDescubiertas.Clear();
+        letrasArriesgadas.Clear();
         palabraElegida = "";
         maximo = 0;
         minimo = 0;
@@ -99,9 +101,9 @@ static public class Informacion
         }
         else if (juegoSeleccionado == 4)
         {
-            if (nivel == 1) { minimo = 0; maximo = 15; }
-            else if (nivel == 2) { minimo = 14; maximo = 29; }
-            else { minimo = 28; maximo = 43; }
+            if (nivel == 1) { minimo = 0; maximo = 14; }
+            else if (nivel == 2) { minimo = 13; maximo = 28; }
+            else { minimo = 27; maximo = 42; }
         }
         else if (juegoSeleccionado == 6)
         {
@@ -187,11 +189,17 @@ static public class Informacion
         if (palabraElegida.Contains(jugada[0]) && letrasDescubiertas.IndexOf(jugada[0]) == -1)
         {
             if (!letrasDescubiertas.Contains(jugada[0]))
+            {
                 letrasDescubiertas.Add(jugada[0]);
+                letrasArriesgadas.Add(jugada[0]);
+            }
             gano = victoria();
         }
-        else
+        else if (letrasArriesgadas.IndexOf(jugada[0]) == -1)
+        {
             vidas--;
+            letrasArriesgadas.Add(jugada[0]);
+        }
         return gano;
     }
     static public bool ProcesarAhorcadoPalabra(string jugada)
@@ -202,10 +210,10 @@ static public class Informacion
         else
         {
             gano = true;
-            for (int i = 0; i < palabraElegida.Length-1; i++)
+            for (int i = 0; i < palabraElegida.Length - 1; i++)
             {
                 if (letrasDescubiertas.IndexOf(palabraElegida[i]) == -1)
-                letrasDescubiertas.Add(palabraElegida[i]);
+                    letrasDescubiertas.Add(palabraElegida[i]);
             }
         }
         return gano;

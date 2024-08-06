@@ -241,12 +241,13 @@ span {
   display:flex;
   align-items: center; 
   justify-content: start;
-  margin-left:20%;
+  margin-left:30%;
 }
 
 .imagenahorcado {
   display:flex;
-  margin-right: 2%;
+  margin-right: 5%;
+  width:33%;
 }
 .finalahorcado{
   margin-left:26%;
