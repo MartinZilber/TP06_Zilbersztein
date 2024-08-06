@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Xml.Schema;
 using Microsoft.AspNetCore.Http.Features;
@@ -91,34 +92,41 @@ public class HomeController : Controller
         ViewBag.jugadaBot = $"/images/{jugadaBot.ToLower()}.png";
         return View("piedrapapeltijera");
     }
-    public IActionResult ahorcado(bool gano = true)
+    public IActionResult ahorcado(bool gano, string dato)
     {
         ViewBag.vidas = Informacion.vidas;
-        if (ViewBag.vidas == 0 || gano)
+        if (ViewBag.vidas == 0 || Informacion.RetornarPalabra() == "")
         {
-            if (ViewBag.vidas == 0) ViewBag.Final = "¡Perdiste!"; 
-            else if (gano) ViewBag.Final = "¡Ganaste!";
+            if (ViewBag.vidas == 0) ViewBag.Final = "¡Perdiste!";
             Informacion.PrepararAhorcado();
         }
+        else if (gano)
+            ViewBag.Final = "¡Ganaste!";
         ViewBag.palabra = Informacion.RetornarPalabra();
         ViewBag.longitudPalabra = ViewBag.palabra.Length;
         ViewBag.letrasDescubiertas = Informacion.RetornarLetrasDescubiertas();
         ViewBag.imagenVidas = "/images/" + Informacion.vidas + "vidas.png";
-        ViewBag.palabraAhorcadoAnterior = Informacion.palabraAnteriorAhorcado;
         return View("ahorcado");
     }
-    public IActionResult ProcesarAhorcado(string jugada)
+    public IActionResult ProcesarAhorcado(string jugada, string EnviarForm)
     {
-        bool gano = false;
-        if (jugada.Length == Informacion.RetornarPalabra().Length)
-            gano = Informacion.ProcesarAhorcadoPalabra(jugada);
-        else if (jugada.Length == 1)
-            gano = Informacion.ProcesarAhorcadoLetra(jugada);
-        return RedirectToAction(Informacion.juegoString, new { gano });
-    }
-    public IActionResult ReiniciarAhorcado()
-    {
-        Informacion.PrepararAhorcado();
+        if (EnviarForm.Equals("Enviar"))
+        {
+            bool respuestaNoNula = Informacion.validarRepuestaNoNula(jugada);
+            if (respuestaNoNula)
+            {
+                bool gano = false;
+                if (jugada.Length == Informacion.RetornarPalabra().Length)
+                    gano = Informacion.ProcesarAhorcadoPalabra(jugada);
+                else if (jugada.Length == 1)
+                    gano = Informacion.ProcesarAhorcadoLetra(jugada);
+                return RedirectToAction(Informacion.juegoString, new { gano });
+            }
+        }
+        else if (EnviarForm.Equals("Reiniciar"))
+        {
+            Informacion.PrepararAhorcado();
+        }
         return RedirectToAction("ahorcado");
     }
     public IActionResult sopadeletras(bool gano = false)

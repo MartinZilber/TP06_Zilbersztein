@@ -10,6 +10,7 @@ static public class Informacion
     static private string[] juegos { get; set; } = { "piedrapapeltijera", "mameig", "ahorcado", "adivinapalabra", "tateti", "sopadeletras" };
     static public int? juegoSeleccionado { get; set; }
     static public int Nivel { get; set; }
+    static private List<char> listaLetras { get; set; } = new List<char>() { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     static public int contadorIntentos { get; set; } = 0;
     static public int minimo { get; set; } = 0;
     static public int maximo { get; set; }
@@ -18,7 +19,7 @@ static public class Informacion
     static public int racha { get; set; } = 0;
     static public string juegoString { get; set; }
     static private string[] jugadasPPT { get; set; } = { "piedra", "papel", "tijera" };
-    static private string[] palabrasAhorcado { get; set; } = { "casa", "agua", "silla", "mesa", "rápido", "panal", "verde", "luna", "gato", "cielo", "lente", "cama", "miel", "tren", "flor", "pared", "reloj", "fresa", "nieve", "llave", "pluma", "huevo", "ropa", "arena", "rata", "boca", "soler", "viento", "fumar", "dedo", "recorrido", "peculiaridad", "satisfactorio", "abandonado", "corregiría", "ponderarían", "adquisición", "identificar", "construcción", "simplificación", "actividades", "comprensible", "proporcionar", "refrigerante", "conocimiento", "establecería", "percepción", "desarrollar", "regularidad", "contradictor", "reputación", "notificaciones", "desigualdad", "manipulador", "funcionalidad", "producción", "colaboración", "decodificación", "diferenciación", "aplicación", "desafortunadamente", "electroencefalograma", "inconstitucionalidad", "contrarrevolucionario", "desproporcionado", "desafiliación", "extraordinario", "incompatibilidad", "multidisciplinario", "transcontinental", "hiperpolarización", "preternaturalmente", "restauracionista", "descentralización", "neurotransmisores" };
+    static private string[] palabrasAhorcado { get; set; } = { "casa", "agua", "silla", "mesa", "rápido", "panal", "verde", "luna", "gato", "cielo", "lente", "cama", "miel", "tren", "flor", "pared", "reloj", "fresa", "nieve", "llave", "pluma", "huevo", "ropa", "arena", "rata", "boca", "soler", "viento", "fumar", "dedo", "recorrido", "peculiaridad", "satisfactorio", "abandonado", "corregiria", "ponderarian", "adquisicion", "identificar", "construccion", "simplificacion", "actividades", "comprensible", "proporcionar", "refrigerante", "conocimiento", "estableceria", "percepcion", "desarrollar", "regularidad", "contradictor", "reputacion", "notificaciones", "desigualdad", "manipulador", "funcionalidad", "produccion", "colaboracion", "decodificacion", "diferenciacion", "aplicacion", "desafortunadamente", "electroencefalograma", "inconstitucionalidad", "contrarrevolucionario", "desproporcionado", "desafiliacion", "extraordinario", "incompatibilidad", "multidisciplinario", "transcontinental", "hiperpolarizacion", "preternaturalmente", "restauracionista", "descentralizacion", "neurotransmisores" };
     static public int numeroAhorcado { get; set; }
     static public string palabraAnteriorAhorcado { get; set; }
     static private string palabraElegida { get; set; }
@@ -66,6 +67,7 @@ static public class Informacion
         mensajeAdivinarPalabra = "";
         primerNumeroMaMeIg = null;
         segundoNumeroMaMeIg = null;
+        vidas = 0;
     }
     static public string seleccionarJuego(int juego)
     {
@@ -121,6 +123,17 @@ static public class Informacion
         letrasDescubiertas.Clear();
         vidas = 7;
     }
+    static public void ReestablecerPalabraAhorcado()
+    {
+        palabraElegida = "";
+    }
+    static public bool validarRepuestaNoNula(string jugada)
+    {
+        bool esValida = false;
+        if (jugada != null && listaLetras.IndexOf(jugada[0]) != -1)
+            esValida = true;
+        return esValida;
+    }
     static public int calcularNumero(int minimo, int maximo)
     {
         Random R = new Random();
@@ -171,7 +184,7 @@ static public class Informacion
     static public bool ProcesarAhorcadoLetra(string jugada)
     {
         bool gano = false;
-        if (palabraElegida.Contains(jugada))
+        if (palabraElegida.Contains(jugada[0]) && letrasDescubiertas.IndexOf(jugada[0]) == -1)
         {
             if (!letrasDescubiertas.Contains(jugada[0]))
                 letrasDescubiertas.Add(jugada[0]);
@@ -187,7 +200,14 @@ static public class Informacion
         if (!jugada.Equals(palabraElegida))
             vidas = 0;
         else
+        {
             gano = true;
+            for (int i = 0; i < palabraElegida.Length-1; i++)
+            {
+                if (letrasDescubiertas.IndexOf(palabraElegida[i]) == -1)
+                letrasDescubiertas.Add(palabraElegida[i]);
+            }
+        }
         return gano;
     }
     static public bool victoria()

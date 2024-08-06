@@ -19,7 +19,7 @@
         <i class="bi bi-heart-fill"></i>
     }
 </div>
-<div class="text-center">
+<div class="text-center ahorcadocontenedor">
     <img class="imagenahorcado" src=@ViewBag.imagenVidas>
     @for (int i = 0; i < longitudPalabra; i++)
     {
@@ -41,21 +41,17 @@
         }
 
     }
+</div>
+<div class="text-center">
     <section class="formulariosahorcado">
         <form action='@Url.Action("ProcesarAhorcado", "Home")' method="post">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
-                <input type="text" autocomplete="off" required name="jugada" class="form-control" id="exampleFormControlInput1" placeholder="Ingresá una letra o la palabra">
-                <input type="submit"  value="Enviar" class="btn btn-primary">
+                <input type="text" autocomplete="off" name="jugada" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Ingresá una letra o la palabra">
+                <input name="EnviarForm" type="submit" value="Enviar" class="btn btn-primary">
+                <input name="EnviarForm" type="submit" value="Reiniciar" class="btn btn-secondary">
             </div>
         </form>
-            <div class="mb-3 reintentarahorcado">
-                <form action='@Url.Action("ReiniciarAhorcado", "Home")' method="post">
-                    <input type="submit" value="Reiniciar" class="btn btn-secondary">
-                </form>
-            </div>
     </section>
-    <p>@ViewBag.palabra</p>
-    <p>@ViewBag.longitudPalabra</p>
-    <p>@ViewBag.vidas</p>
 </div>

@@ -237,9 +237,16 @@ h5 {
 span {
   font-size: 300%;
 }
+.ahorcadocontenedor{
+  display:flex;
+  align-items: center; 
+  justify-content: start;
+  margin-left:20%;
+}
 
 .imagenahorcado {
-  clear: left;
+  display:flex;
+  margin-right: 2%;
 }
 .finalahorcado{
   margin-left:26%;
@@ -258,7 +265,9 @@ form .mb-3 .form-control {
 form .mb-3 .btn-primary {
   margin-top: 0.4%;
 }
-
+.formulariosahorcado .btn-secondary{
+  margin-top:0.4%;
+}
 .mensajeerrorsopa {
   margin-left: 26%;
 }
