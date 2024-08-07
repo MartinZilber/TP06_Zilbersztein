@@ -21,26 +21,45 @@
 </div>
 <div class="text-center ahorcadocontenedor">
     <img class="imagenahorcado" src=@ViewBag.imagenVidas>
-    @for (int i = 0; i < longitudPalabra; i++)
-    {
-        if (ViewBag.letrasDescubiertas.Count > 0 && ViewBag.letrasDescubiertas.Contains(palabra[i]))
+    <div class="palabra">
+        @for (int i = 0; i < longitudPalabra; i++)
         {
-            if (i == 0)
+            if (ViewBag.letrasDescubiertas.Count > 0 && ViewBag.letrasDescubiertas.Contains(palabra[i]))
             {
-                <span>@ViewBag.palabra[i].ToString().ToUpper()</span>
+                if (i == 0)
+                {
+                    <span>@ViewBag.palabra[i].ToString().ToUpper()</span>
+                }
+                else
+                {
+                    <span>@palabra[i]</span>
+                }
+
             }
             else
             {
-                <span>@palabra[i]</span>
+                <span>-</span>
             }
 
         }
-        else
-        {
-            <span>-</span>
-        }
-
-    }
+    </div>
+</div>
+<div class="contenedorletras">
+    <div class="row align-items-start">
+            <div class="col">
+                Letras utilizadas: 
+                <div class="letras">
+                    @for (int i = 0; i < @ViewBag.letrasArriesgadas.Count; i++)
+                    {   
+                        <span>@ViewBag.letrasArriesgadas[i]</span>
+                        if (i < @ViewBag.letrasArriesgadas.Count-1)
+                        {
+                            <span>, </span>
+                        }
+                    }
+                </div>
+            </div>
+    </div>
 </div>
 <div class="text-center">
     <section class="formulariosahorcado">
@@ -48,7 +67,7 @@
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Ingresá tu jugada</label>
                 <input type="text" autocomplete="off" name="jugada" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Ingresá una letra o la palabra">
+                    autofocus="focus" placeholder="Ingresá una letra o la palabra">
                 <input name="EnviarForm" type="submit" value="Enviar" class="btn btn-primary">
                 <input name="EnviarForm" type="submit" value="Reiniciar" class="btn btn-secondary">
             </div>

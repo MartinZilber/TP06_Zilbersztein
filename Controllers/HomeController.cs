@@ -105,6 +105,7 @@ public class HomeController : Controller
         ViewBag.palabra = Informacion.RetornarPalabra();
         ViewBag.longitudPalabra = ViewBag.palabra.Length;
         ViewBag.letrasDescubiertas = Informacion.RetornarLetrasDescubiertas();
+        ViewBag.letrasArriesgadas = Informacion.RetornarLetrasArriesgadas();
         ViewBag.imagenVidas = "/images/" + Informacion.vidas + "vidas.png";
         return View("ahorcado");
     }

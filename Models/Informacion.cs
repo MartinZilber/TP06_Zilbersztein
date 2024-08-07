@@ -113,29 +113,7 @@ static public class Informacion
         }
 
     }
-    static public void PrepararAhorcado()
-    {
-        numeroAhorcado = calcularNumero(minimo, maximo);
-        while (palabraElegida.Equals(palabraAnteriorAhorcado))
-        {
-            numeroAhorcado = calcularNumero(minimo, maximo);
-            palabraElegida = palabrasAhorcado[numeroAhorcado];
-        }
-        palabraAnteriorAhorcado = palabraElegida;
-        letrasDescubiertas.Clear();
-        vidas = 7;
-    }
-    static public void ReestablecerPalabraAhorcado()
-    {
-        palabraElegida = "";
-    }
-    static public bool validarRepuestaNoNula(string jugada)
-    {
-        bool esValida = false;
-        if (jugada != null && listaLetras.IndexOf(jugada[0]) != -1)
-            esValida = true;
-        return esValida;
-    }
+    
     static public int calcularNumero(int minimo, int maximo)
     {
         Random R = new Random();
@@ -183,6 +161,10 @@ static public class Informacion
     {
         return letrasDescubiertas;
     }
+    static public List<char> RetornarLetrasArriesgadas()
+    {
+        return letrasArriesgadas;
+    }
     static public bool ProcesarAhorcadoLetra(string jugada)
     {
         bool gano = false;
@@ -192,6 +174,8 @@ static public class Informacion
             {
                 letrasDescubiertas.Add(jugada[0]);
                 letrasArriesgadas.Add(jugada[0]);
+                letrasDescubiertas.Sort();
+                letrasArriesgadas.Sort();
             }
             gano = victoria();
         }
@@ -199,6 +183,7 @@ static public class Informacion
         {
             vidas--;
             letrasArriesgadas.Add(jugada[0]);
+            letrasArriesgadas.Sort();
         }
         return gano;
     }
@@ -217,6 +202,30 @@ static public class Informacion
             }
         }
         return gano;
+    }
+    static public void PrepararAhorcado()
+    {
+        numeroAhorcado = calcularNumero(minimo, maximo);
+        while (palabraElegida.Equals(palabraAnteriorAhorcado))
+        {
+            numeroAhorcado = calcularNumero(minimo, maximo);
+            palabraElegida = palabrasAhorcado[numeroAhorcado];
+        }
+        palabraAnteriorAhorcado = palabraElegida;
+        letrasDescubiertas.Clear();
+        letrasArriesgadas.Clear();
+        vidas = 7;
+    }
+    static public void ReestablecerPalabraAhorcado()
+    {
+        palabraElegida = "";
+    }
+    static public bool validarRepuestaNoNula(string jugada)
+    {
+        bool esValida = false;
+        if (jugada != null && listaLetras.IndexOf(jugada[0]) != -1)
+            esValida = true;
+        return esValida;
     }
     static public bool victoria()
     {
