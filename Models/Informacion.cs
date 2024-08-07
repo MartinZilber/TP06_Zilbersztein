@@ -113,7 +113,7 @@ static public class Informacion
         }
 
     }
-    
+
     static public int calcularNumero(int minimo, int maximo)
     {
         Random R = new Random();
@@ -410,15 +410,13 @@ static public class Informacion
                 {
                     esPosible = true;
                     espaciosOcupadosCruz[jugada] = true;
-                    espaciosOcupados[jugada] = 2;
                 }
 
             } while (!esPosible);
         }
-
-
-
     }
+
+
     static public int[] procesarEspacios()
     {
         int[] espacios = new int[maximo];
